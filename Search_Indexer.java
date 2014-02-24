@@ -8,18 +8,34 @@ public class Search_Indexer
   {
     Connection c = null;
     Statement stmt = null;
+	Scanner s = new Scanner(System.in);
+	String str = null;
+	ResultSet rs = null;
+	long l = 0;
     try {
       Class.forName("org.sqlite.JDBC");
       c = DriverManager.getConnection("jdbc:sqlite:files_test.db");
       c.setAutoCommit(false);
       System.out.println("Opened database successfully");
-    Scanner s = new Scanner(System.in);
-    String str = s.nextLine();
+	  System.out.println("Do you want to perform \"Like\" search?");
+	  int flag = s.nextInt();
+	if(flag==1)
+	{
+    str = s.next();
     java.util.Date d = new java.util.Date();
-    long l = d.getTime();
-      stmt = c.createStatement();
-      ResultSet rs = stmt.executeQuery( "SELECT * FROM file_sys where name ='" + str + "' order by modified DESC;" );
-    int n=0;
+    l = d.getTime();
+    stmt = c.createStatement();
+    rs = stmt.executeQuery( "SELECT * FROM file_sys where name like '%" + str + "' order by modified DESC;" );
+    }
+	else
+	{
+    str = s.next();
+    java.util.Date d = new java.util.Date();
+    l = d.getTime();
+    stmt = c.createStatement();
+    rs = stmt.executeQuery( "SELECT * FROM file_sys where name = '" + str + "' order by modified DESC;" );
+	}
+	int n=0;
       while ( rs.next() ) {
          String  name = rs.getString("name");
          String  time = rs.getString("time");
