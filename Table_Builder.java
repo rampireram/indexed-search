@@ -16,7 +16,7 @@ public class Table_Builder
       System.exit(0);
     }
     stmt = c.createStatement();
-    String sql = "CREATE TABLE file_sys " +
+    String sql = "CREATE TABLE IF NOT EXISTS file_sys " +
                    "( name      TEXT      NOT NULL, " + 
                    "  time       TEXT     NOT NULL, " +
                    "modified   NUMBER     NOT NULL,"  +

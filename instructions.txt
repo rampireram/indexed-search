@@ -1,0 +1,5 @@
+javac Table_Builder.java
+javac Search_Indexer.java
+java -classpath ".;sqlite-jdbc-3.7.2.jar" Table_Builder
+(give folder name as input for this file)
+java -classpath ".;sqlite-jdbc-3.7.2.jar" Search_Indexer
