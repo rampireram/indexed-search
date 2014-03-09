@@ -16,7 +16,7 @@ public class Table_Builder
       System.exit(0);
     }
     stmt = c.createStatement();
-    String sql = "CREATE TABLE IF NOT EXISTS file_sys " +
+    String sql = "CREATE TABLE file_sys " +
                    "( name      TEXT      NOT NULL, " + 
                    "  time       TEXT     NOT NULL, " +
                    "modified   NUMBER     NOT NULL,"  +
@@ -26,6 +26,7 @@ public class Table_Builder
   
   File f = null;
   Scanner sc= new Scanner(System.in);
+  System.out.println("Enter the directory to index ");
   String s = sc.nextLine();
    f = new File(s);
    java.util.Date d1 = new java.util.Date();
@@ -59,7 +60,7 @@ public class Table_Builder
    long l = f.lastModified();
    date.setTime(l);
   String sql = "INSERT INTO file_sys (name,time,modified,location) " +
-                   "VALUES ('" + f.getName() + "','" + date + "','" +  l + "','" + f.getAbsolutePath() + "');";
+                   "VALUES ('" + f.getName() + "','" + date + "','" +  l + "','" + f.getCanonicalPath() + "');";
       stmt.executeUpdate(sql);
     
     
